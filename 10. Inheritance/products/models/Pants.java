@@ -5,13 +5,19 @@ import java.util.Objects;
 /**Shirt and pants need to inherit from a Parent class since they have same fields
  * 
  */
-public class Pants extends Product{
+public class Pants extends Product implements Discountable {
      private int waist;
 
     public Pants (int waist, double price, String color , String brand){
         super(price, color, brand);
         this.waist =waist;
         
+    }
+
+
+    public Pants(Pants source) {
+        super(source);
+        this.waist = source.waist;
     }
 
 
@@ -42,5 +48,24 @@ public class Pants extends Product{
     public int hashCode() {
         return Objects.hash(waist, super.getPrice(),super.getColor(),super.getBrand());
     }
+
+
+    @Override
+    public void discount() {
+        super.setPrice(super.getPrice()/2);
+        
+    }
+
+    public String toString() {
+        return "{" +
+        "waist= '"  + getWaist() + " '" +
+        ", price='" + getPrice() + "'" +
+       " color='" + getColor() + "'" +
+        ", brand='" + getBrand() + "'" +
+        "}"; 
+
+
+
+}
 
 }

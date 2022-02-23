@@ -55,8 +55,11 @@ public class Shirt extends Product{
     @Override
     public String toString() {
         return "{" +
-            " size='" + getSize() + "'" +
-            "}"; //do the same for the other fields from Product 
+        "size= '"  + getSize() + " '" +
+        ", price='" + getPrice() + "'" +
+       " color='" + getColor() + "'" +
+        ", brand='" + getBrand() + "'" +
+        "}"; //do the same for the other fields from Product 
     }
 
 }
