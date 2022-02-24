@@ -1,0 +1,15 @@
+The store sells movies and lets the user rent/return them.
+The store starts by adding movies to its collection.
+A movie is described by its name, format, and rating.
+
+               Test Cases
+----------------------------------------
+- adding a movie
+    - Test to see the store contains the movie after it's added 
+- selling a movie
+    - Test to see if the store removes a movie if it was sold 
+    - `[identify state exception test case]` : Does the movie exist in the store in the first place ?
+- renting a movie
+    - `[identify test case 4]` : Test to see if the store removes a movie if it was sold 
+- returning a movie
+    - `[identify test case 5]` : Test to see if the store adds a movie after it was returned 
