@@ -7,7 +7,7 @@ I was able to do the following by the end of the course
 >Leverage code-reusability with Inheritance and Polymorphism.
 >Maximize performance with Concurrency.
 
-Module 2 covered :
+I learnt the following items in Module 2 :
 >Objects
 >Exception Handling
 >Debugging
@@ -17,7 +17,7 @@ Module 2 covered :
 >Polymorphism
 >Concurrency
 
-I was able to succeed in Module 2 due to the following basics that layed the foundation to my Java in Module 1:
+I was able to successfully understand concepts in Module 2 due to the following basics that layed the foundation to my Java in Module 1:
 >Variables, Conditionals, Functions, Loops, and Arrays.
 >Store information inside variables.
 >Control how code runs using conditionals.
