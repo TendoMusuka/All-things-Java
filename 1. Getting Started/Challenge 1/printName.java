@@ -1,7 +1,7 @@
 /**Rutendo Musuka's code
  * Udemy Java Bootcamps Notes, Workshops and Challenges 
+ *Challenge : Print out my name
  */
-//Challenge 1 Java Course with notes 
 
 public class printName {
 
