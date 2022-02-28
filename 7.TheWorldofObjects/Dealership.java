@@ -10,10 +10,12 @@ public class Dealership {
     private Car []  cars;
 
     //Create a Constructor
-    public Dealership(){
-        this.cars =new Car[3] ;
+    public Dealership(Car[] cars){
+        this.cars =new Car[(cars.length)] ;  //the dealership constructor creates an array with the length of 
         //System.out.println(Arrays.toString(this.cars));
-
+        for (int i = 0; i < cars.length; i++) { //a 
+            this.cars[i] = new Car(cars[i]);
+        }
     }
 
     //Create Getters 
@@ -39,7 +41,7 @@ public class Dealership {
     public String search(String make, int budget) {
         
         for (int i = 0; i < cars.length; i++) {
-            if (this.cars[i] == null){ //account for an array that is empty 
+            if (this.cars[i] == null){ //account for an array that is empty. This avoids the NullPointerExceptions 
                 continue ;
             }
             if (this.cars[i].getMake().equals(make)  && this.cars[i].getPrice() <= budget){
@@ -49,6 +51,7 @@ public class Dealership {
         return "Sorry , we could not find any cars";
     }
 
+    @Override
     public String toString(){
         String temp = " ";
         for (int i = 0; i < cars.length; i++) {

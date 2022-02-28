@@ -83,9 +83,9 @@ public class Notes {
      nissan.setColour("Jet Black");
      //nissan halved in prices 
 
-     System.out.println(nissan.getprice());
-     nissan.setPrice (nissan.getprice()/2);
-     System.out.println("Nissan price has been halved: $" + nissan.getprice());
+     System.out.println(nissan.getPrice());
+     nissan.setPrice (nissan.getPrice()/2);
+     System.out.println("Nissan price has been halved: $" + nissan.getPrice());
 
     //  Reference Traps
     //  -Many references to one Object
