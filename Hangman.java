@@ -88,7 +88,8 @@ public class Hangman {
         String wordGenerated = getRandom(); //returns a random word from the list of array
         System.out.println("The game has determined a word");
 
-        //Initial display of letters guessed correctly 
+        //Initial display of an empty list for hangman 
+        //counts the number of letters in the word generated and produces ____
         int wordGeneratedLength = wordGenerated.length();
         for (int i = 0; i < wordGeneratedLength; i++) {
             correctGuesses = correctGuesses + "_" ;
@@ -97,13 +98,14 @@ public class Hangman {
         //while guessCounter <=6 and the word has not been guessed correctly, the user should keep playing 
         while (missCounter<6 && !(correctGuesses.indexOf('_')==-1) ){
                 System.out.print("Guess a letter : ");
+            
             //Ask user for the input and throw an exception if it aint a letter 
             try {                 
                 letterGuessed =  scanner.next().charAt(0);  //gets the guessed letter from the user 
             }
-            catch (Exception e) {
+            catch (Exception e) { 
                 System.out.println("Please guess one letter only! No numbers or character");
-                continue; //if they guess anything other than a 
+                continue; //if they guess anything other than letter 
             }
             //determine if the letter guessed is correct of not 
             if( wordGenerated.contains(String.valueOf(letterGuessed))){  //checks if the letter is in the random word
@@ -123,11 +125,11 @@ public class Hangman {
         scanner.close();
 
         //Display end of the game screen : Display a win vs a loss
-        if (missCounter<6){
+        if (missCounter<6){ //if counter is less than 6 by end of game the player has won
             System.out.println("You have won!! Congratulations." + "\n" +
             "You correctly guessed the word:" + wordGenerated);
         }
-        else{
+        else{ //Tell the gamer has lost and display the correct word 
             System.out.println("Better luck, next time!" + "\n" + 
             "The word was" + wordGenerated );
         }
