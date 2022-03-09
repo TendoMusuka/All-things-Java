@@ -1,3 +1,8 @@
+/**
+*Purpose:      Design Rock Paper Scissors
+*Author:       Rutendo Musuka
+*/
+
 import java.util.Scanner;
 import java.util.Random;
 
