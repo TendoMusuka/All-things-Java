@@ -1,3 +1,8 @@
+/**
+*Purpose:      Design Hangman  game
+*Author:       Rutendo Musuka
+*/
+
 import java.util.Random;
 import java.util.Scanner;
 
