@@ -1,5 +1,5 @@
-//Rutendo Musuka's code
 //Let's play tic tac toe
+//Author Tic Tac Toe 
 
 import java.util.Scanner;
 
