@@ -138,20 +138,20 @@ public class Hangman {
 
     }
 
-        /** Function : Word generator
-         * Randomly generates a word from the string array 
-         * @ parameter no parameters 
+        /** Function name: Word generator
+         *  Inside Function : Randomly generates a word from the string array 
+         *  @return  (String) 
          */
 
         public static String getRandom(){
             int rnd = new Random().nextInt(words.length);
             return words[rnd];
         }
-        /**Displays the screen
+        /** Function Name : displayScreen
          * Displays the letter guessed ,gallows ,word guess ,misses 
          * @wordGuessed
-         * @parameter letterGuessed: letter put in by user 
-         * @parameter words: determines which shallow to display 
+         * @param letterGuessed: letter put in by user 
+         * @param words: determines which shallow to display 
          */
         
         public static void displayScreen(String displayCorrectGuesses,char letterGuessed, String shallows,String missedLetters){
