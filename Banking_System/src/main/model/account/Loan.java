@@ -11,7 +11,7 @@ public class Loan extends Account {
 
     //Create a copy constructor that synchronizes with the parent constructor 
     //Calls parent copy constructor 
-    public Loan (Chequing source){
+    public Loan (Loan source){
         super(source);
     }
 
@@ -36,6 +36,12 @@ public class Loan extends Account {
         //Charge a fixed interest rate for 2%
         super.setBalance(super.round(super.getBalance() + (1+INTEREST_RATE)*amount));
         return true;
+    }
+
+    @Override
+    public Account clone() {
+        // TODO Auto-generated method stub
+        return new Loan(this);
     }
 
 }

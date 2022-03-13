@@ -22,6 +22,12 @@ public class Main {
         System.out.println(chequing);
         System.out.println(savings);
         System.out.println(loan);
+
+        Chequing chequing1 = new Chequing("f84c43f4-a634-4c57-a644-7602f8840870", "Michael Scott", 1524.51);
+        Account chequingCopy = chequing.clone();
+      
+        Savings savings1 = new Savings("ce07d7b3-9038-43db-83ae-77fd9c0450c9", "Saul Goodman", 2241.60);
+        Account savingsCopy = savings.clone();
     }
 
     /**

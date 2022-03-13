@@ -16,7 +16,7 @@ public class Savings extends Account {
      * A savings account allows users to deposit or withdraw an amount of money.
      * Deposits are free, but the savings account charges a $5.00 fee for every withdrawal
      */
-    public Savings (Chequing source){
+    public Savings (Savings source){
         super(source);
     }
 
@@ -27,6 +27,12 @@ public class Savings extends Account {
     public boolean withdraw (double amount){
      this.setBalance(super.round(super.getBalance() - amount - WITHDRAWAL_FEE));
         return true;
+    }
+
+    @Override
+    public Account clone() {
+        // TODO Auto-generated method stub
+        return new Savings(this);
     }
 
 

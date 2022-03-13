@@ -5,32 +5,17 @@ import java.util.ArrayList;
 import src.main.model.account.Account;
 
 public class Bank {
-    ArrayList <Account> accounts;
-    ArrayList<Transaction> transactions;
+    private ArrayList <Account> accounts;
+    private ArrayList<Transaction> transactions;
 
 
 
-    public Bank(ArrayList<Account> accounts, ArrayList<Transaction> transactions) {
-        this.accounts = accounts;
-        this.transactions = transactions;
+    //Constructor 
+    public Bank() {
+        this.accounts = new ArrayList<Account>();
+        this.transactions = new ArrayList<Transaction>();
     }
 
-
-    public ArrayList<Account> getAccounts() {
-        return this.accounts;
-    }
-
-    public void setAccounts(ArrayList<Account> accounts) {
-        this.accounts = accounts;
-    }
-
-    public ArrayList<Transaction> getTransactions() {
-        return this.transactions;
-    }
-
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-    }
 
      /**
      * Name: addAccount
@@ -39,5 +24,9 @@ public class Bank {
      * Inside the function:
      *   1. adds an account to the accounts ArrayList
      */
+
+     public void addAccount(Account account){
+         this.accounts.add(account.clone());
+     }
   
 }
