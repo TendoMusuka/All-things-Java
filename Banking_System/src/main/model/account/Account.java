@@ -84,6 +84,7 @@ public abstract class Account {  //Account save as the parent for savings, chequ
     //An abstract method is a method that is declared without an implementation without braces, and followed by a semicolon 
     public abstract void deposit(double amount);
     public abstract boolean withdraw(double amount);
+    public abstract Account clone();
 
 
     //Equal Operator for Objects 
