@@ -26,7 +26,29 @@ public class Bank {
      */
 
      public void addAccount(Account account){
-         this.accounts.add(account.clone());
+         this.accounts.add(account);
      }
   
+    /**
+     * Name: addTransaction
+     * @param transaction
+     * 
+     * Inside the function:
+     *   1. adds a new transaction object to the array list.
+     */
+
+     public void addTransaction(Transaction transaction){
+         this.accounts.add(transaction);
+     }
+
+    /**
+     * Name: getTransactions
+     * @param accoundId (String)
+     * @return (Transaction[])
+     * 
+     * 1. returns an array of transactions whose id matches the accountId 
+     */
+
+
+
 }
