@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import src.main.model.account.Account;
+import src.main.model.account.*;
+import src.main.model.*;
 
 public class Bank { //In charge of managing accounts and transactions 
     private ArrayList <Account> accounts;
     private ArrayList<Transaction> transactions;
-
-
 
     //Constructor :Initializes each ArrayList
     public Bank() {
@@ -40,7 +39,7 @@ public class Bank { //In charge of managing accounts and transactions
      *   1. adds a new transaction object to the array list.
      */
 
-     public void addTransaction(Transaction transaction){
+     private void addTransaction(Transaction transaction){
          //this.transactions.add(transaction); //Rookie mistake :You need to add a copy of transaction and not the original transaction
          this.transactions.add(new Transaction(transaction));
      }
@@ -58,7 +57,9 @@ public class Bank { //In charge of managing accounts and transactions
         .filter((transaction) -> transaction.getId().equals(accountId))
         .collect(Collectors.toList());
         
-        return list.toArray(new Transaction[list.size()]);
+        return list.toArray(new Transaction[list.size()]); 
+        // By default, toArray returns Object[]. You can force toArray to return a specific type using this syntax:
+        //list.toArray(new CustomClass[list.size()]);
      }
 
       /**
@@ -75,6 +76,37 @@ public class Bank { //In charge of managing accounts and transactions
         .findFirst() //returns the element of the stream
         .orElse(null); //return null if findFirst does not return anything 
    }
+
+   private void withdrawTransaction(Transaction transaction){
+       if (getAccount(transaction.getId()).withdraw(transaction.getAmount())){
+           addTransaction(transaction);
+       }
+   }
+
+       private void depositTransaction(Transaction transaction){
+        getAccount(transaction.getId()).deposit(transaction.getAmount());
+        addTransaction(transaction);
+   }
+
+   /**
+     * Name: executeTransaction
+     * @param transaction
+     * 
+     * Inside the function:
+     *  1. calls withdrawTransaction if transaction type is WITHDRAW
+     *  2. calls depositTransaction if transaction type is DEPOSIT
+     * 
+     */
+
+    public void executeTransaction(Transaction transaction){
+        switch(transaction.getType()){
+            case WITHDRAW: withdrawTransaction(transaction);
+            case DEPOSIT: depositTransaction(transaction);
+        }
+    }
+
+    
+ 
 
    
 

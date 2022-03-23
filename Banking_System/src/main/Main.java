@@ -62,9 +62,13 @@ public class Main {
         };
 
         //runs through every Transaction in the transaction account and adds it to bank 
-        for (Transaction transaction : transactions) {
-            bank.addTransaction(transaction);
-        }
+        //made Transaction private as the caller is forbidden to authorize a transaction 
+        //it is up to the bank to make a transaction or not
+        /** 
+        *for (Transaction transaction : transactions) {
+        *    bank.addTransaction(transaction);
+        *}
+        */
         
         //filters accounts with the matching ID
         Transaction[] filteredTransactions = bank.getTransactions("f84c43f4-a634-4c57-a644-7602f8840870");

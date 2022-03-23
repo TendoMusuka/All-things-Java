@@ -87,6 +87,9 @@ public class Transaction implements Comparable<Transaction> {
         return new SimpleDateFormat("dd-MM-yyyy").format(date);
     }
 
+    //withdrawTransaction and depositTransaction get the account that a transaction belongs to 
+    //And executes the transaction.
+
 
     //Override Equals and HashCode 
     @Override
@@ -111,7 +114,7 @@ public class Transaction implements Comparable<Transaction> {
         return Double.compare(this.timestamp, o.timestamp); 
     }
 
-
+    //Override toString 
     @Override
     public String toString() {
         return
