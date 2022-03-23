@@ -1,10 +1,12 @@
 package src.main.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import src.main.model.account.*;
+import src.main.model.account.impl.Taxable;
 import src.main.model.*;
 
 public class Bank { //In charge of managing accounts and transactions 
@@ -100,10 +102,37 @@ public class Bank { //In charge of managing accounts and transactions
 
     public void executeTransaction(Transaction transaction){
         switch(transaction.getType()){
-            case WITHDRAW: withdrawTransaction(transaction);
-            case DEPOSIT: depositTransaction(transaction);
+            case WITHDRAW: withdrawTransaction(transaction); break;
+            case DEPOSIT: depositTransaction(transaction); break;
+        }
+
+    }
+
+    private double getIncome(Taxable account) {
+        Transaction[] transactions = getTransactions(((Chequing)account).getId());
+        return Arrays.stream(transactions)
+        .mapToDouble((transaction)->{
+            switch(transaction.getType()){//compare transaction type against two possible accounts
+                case WITHDRAW: return -transaction.getAmount();
+                case DEPOSIT: return transaction.getAmount();
+                default: return 0;
+            }
+        }).sum(); //return the sum of every element in the stream
+    }
+
+
+    public void deductTaxes(){
+        for (Account account:accounts){
+            if (Taxable.class.isAssignableFrom(account.getClass())){ //Checking to see if this account implements the taxable phase
+                Taxable taxable = (Taxable)account; //type cast our account to taxable
+                taxable.tax(getIncome(taxable));
+            }
         }
     }
+
+
+    
+    
 
     
  
