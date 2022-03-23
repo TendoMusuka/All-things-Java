@@ -11,6 +11,7 @@ public class Main {
     static String ACCOUNTS_FILE = "src/main/data/accounts.txt";            
     static String TRANSACTIONS_FILE = "src/main/data/transactions.txt";
     static Bank bank = new Bank ();
+    static Bank bank2 = new Bank ();
 
     public static void main(String[] args) {
 
@@ -91,5 +92,75 @@ public class Main {
              System.out.println(e.getMessage());
          }
      }
+
+     /**
+     * Name: createObject
+     * @param values (String[] values)
+     * @return Account
+     * 
+     * Inside the function:
+     *   1. Dynamically creates a Chequing, Loan, or Savings object based on the values array. 
+     */
+
+     public Account createObject(String[] values){
+         switch(values[0]){
+             case Chequing:
+             case Savings:
+             case Loan:
+         }
+
+     }
+
+     /**
+     * Name: returnAccounts()
+     * @return ArrayList<Account>
+     * @throws FileNotFoundException
+     * 
+     * Inside the function:
+     *    1. Creates a Scanner object and reads the data from accounts.txt.
+     *    2. Creates an Account object for every line in accounts.txt.
+     *    3. Returns an ArrayList of Account objects.
+     */
+
+      /**
+     * Name: loadAccounts
+     * @param accounts (ArrayList<Account>)
+     * 
+     * Inside the function:
+     *   1. Loads every account into the Bank object.
+     *  
+     */
+
+     /**
+     * Name: returnTransactions()
+     * @return ArrayList<Transaction>
+     * @throws FileNotFoundException
+     * 
+     * Inside the function:
+     *    1. Creates a Scanner object and reads the data from transactions.txt.
+     *    2. Populates an ArrayList with transaction objects.
+     *    3. Sorts the ArrayList.
+     */
+
+      /**
+     * Name: runTransactions
+     * @param transactions ArrayList<Transaction>
+     * 
+     * Inside the function:
+     *  1. Executes every transaction using bank.execute.
+     */
+
+     
+    /**
+     * Name: transactionHistory
+     * @param id (String)
+     * 
+     * Inside the function
+     *   1. Print: \t\t\t\t   TRANSACTION HISTORY\n\t
+     *   2. Print every transaction that corresponds to the id. (Waits 300 milliseconds before printing the next one)
+     *             - Use this format "\t"+transaction+"\n"
+     *   3. Print: \n\t\t\t\t\tAFTER TAX\n
+     *   4. Print: "\t" + account that corresponds to id +"\n\n\n\n"
+     */
 
 }
