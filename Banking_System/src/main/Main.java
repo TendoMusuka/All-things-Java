@@ -4,11 +4,13 @@ import java.util.concurrent.TimeUnit;
 
 //Imports all the parent and child classes in the model model/account file 
 import src.main.model.account.*;
+import src.main.model.*;
 
 public class Main {
 
     static String ACCOUNTS_FILE = "src/main/data/accounts.txt";            
     static String TRANSACTIONS_FILE = "src/main/data/transactions.txt";
+    static Bank bank = new Bank ();
 
     public static void main(String[] args) {
 
@@ -24,13 +26,13 @@ public class Main {
         System.out.println(loan);
 
         Chequing chequing1 = new Chequing("f84c43f4-a634-4c57-a644-7602f8840870", "Michael Scott", 1524.51);
-        Account chequingCopy = chequing.clone();
+        Account chequingCopy = chequing1.clone();
       
         Savings savings1 = new Savings("ce07d7b3-9038-43db-83ae-77fd9c0450c9", "Saul Goodman", 2241.60);
-        Account savingsCopy = savings.clone();
+        Account savingsCopy = savings1.clone();
 
         /**
-         * Add the code snippet below inside main(). The code:
+         * The code:
          * Loops through an array of accounts and adds them to a Bank object.
          * Loops through an array of transactions and adds to them to the same Bank object.
          * Gets every the transaction that matches the account: "f84c43f4-a634-4c57-a644-7602f8840870
@@ -40,6 +42,7 @@ public class Main {
             new Savings("ce07d7b3-9038-43db-83ae-77fd9c0450c9", "Saul Goodman", 2241.60)
         };
 
+        //runs through every account in the account array and adds it to bank
         for (Account account : accounts) {
             bank.addAccount(account);
         }
@@ -58,14 +61,17 @@ public class Main {
             new Transaction(Transaction.Type.WITHDRAW, 1546819200, "ce07d7b3-9038-43db-83ae-77fd9c0450c9", 612.52)
         };
 
+        //runs through every Transaction in the transaction account and adds it to bank 
         for (Transaction transaction : transactions) {
             bank.addTransaction(transaction);
         }
         
+        //filters accounts with the matching ID
         Transaction[] filteredTransactions = bank.getTransactions("f84c43f4-a634-4c57-a644-7602f8840870");
-
+        
+        Account account = bank.getAccount("ce07d7b3-9038-43db-83ae-77fd9c0450c9");
+    
     }
-
     /**
      * Function name: wait
      * @param milliseconds

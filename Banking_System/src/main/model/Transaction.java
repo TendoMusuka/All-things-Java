@@ -16,7 +16,7 @@ public class Transaction implements Comparable<Transaction> {
 
     //CONSTRUCTOR 
     public Transaction(Type type, long timestamp, String id, double amount) {
-        if (id == null || id.isBlank() || amount<0){
+        if (id == null || id.isBlank() || amount<0){ //checks if parameters passed are valid or not 
             throw new IllegalArgumentException("INVALID PARAMS");
         }
 
@@ -75,11 +75,15 @@ public class Transaction implements Comparable<Transaction> {
     }
 
     public void setAmount(double amount) {
+        if(amount<0){
+            throw new IllegalArgumentException("amount can not be less than zero");
+        }
         this.amount = amount;
     }
 
+    
     public String returnDate(){
-        Date date = new Date(this.timestamp*1000);
+        Date date = new Date(this.timestamp*1000);// Timestamp represents the number of seconds since 1970
         return new SimpleDateFormat("dd-MM-yyyy").format(date);
     }
 
@@ -101,7 +105,7 @@ public class Transaction implements Comparable<Transaction> {
         return Objects.hash(type, timestamp, id, amount);
     }
 
-    @Override
+    @Override //need to override compareTo since you implemented Compare
     public int compareTo(Transaction o) {
         // TODO Auto-generated method stub
         return Double.compare(this.timestamp, o.timestamp); 
@@ -110,12 +114,11 @@ public class Transaction implements Comparable<Transaction> {
 
     @Override
     public String toString() {
-        return "{" +
-            " type='" + getType() + "'" +
-            ", timestamp='" + getTimestamp() + "'" +
+        return
+            " type='"  + "'" +
+            ", timestamp='" + this.returnDate() + "'" +
             ", id='" + getId() + "'" +
-            ", amount='" + getAmount() + "'" +
-            "}";
+            ", amount='" + getAmount() + "'" ;
     }
 
     
