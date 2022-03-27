@@ -1,10 +1,16 @@
 package src.main;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 //Imports all the parent and child classes in the model model/account file 
 import src.main.model.account.*;
 import src.main.model.*;
+import src.main.model.Transaction;
 
 public class Main {
 
@@ -75,6 +81,13 @@ public class Main {
         Transaction[] filteredTransactions = bank.getTransactions("f84c43f4-a634-4c57-a644-7602f8840870");
         
         Account account = bank.getAccount("ce07d7b3-9038-43db-83ae-77fd9c0450c9");
+
+        try {
+            Account account5 = createObject(new String[] {
+                "Chequing","f84c43f4-a634-4c57-a644-7602f8840870","Michael Scott","1524.51"});
+            }catch (Exception e) {
+            System.out.println(e.getMessage());
+         }
     
     }
     /**
@@ -102,12 +115,25 @@ public class Main {
      *   1. Dynamically creates a Chequing, Loan, or Savings object based on the values array. 
      */
 
-     public Account createObject(String[] values){
-         switch(values[0]){
-             case Chequing:
-             case Savings:
-             case Loan:
-         }
+     public static Account createObject(String[] values) { 
+
+        try {//uses the first part to determine which account to create
+                return (Account) Class.forName("src.main.model.account." + values[0])
+                        .getConstructor(String.class, String.class, double.class)
+                        .newInstance(values[1], values[2], Double.parseDouble(values[3]));
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+                return null;
+        }
+         
+
+        
+        /**Alternative - Use the following syntax to dynamically create an object based on the first element in values.
+         *   switch(values[0]){ 
+          case "Chequing" : return new (Account) Chequing(values[1], values[2],  Double.parseDouble(values[3]));
+                case "Savings" :return (Account) Savings(values[1], values[2],  Double.parseDouble(values[3]));
+                case "Loan" :return (Account) Loan(values[1], values[2],  Double.parseDouble(values[3]));
+         */
 
      }
 
@@ -121,15 +147,34 @@ public class Main {
      *    2. Creates an Account object for every line in accounts.txt.
      *    3. Returns an ArrayList of Account objects.
      */
+    public static ArrayList<Account> returnAccounts() throws FileNotFoundException{
+        FileInputStream fis = new FileInputStream(ACCOUNTS_FILE);
+        Scanner scan = new Scanner(fis);
+
+        ArrayList<Account> accounts = new ArrayList<Account>();  
+
+        while(scan.hasNextLine()){
+            accounts.add(createObject(scan.nextLine().split(",")));
+        }
+        scan.close();
+        return accounts;
+    }
+
+
 
       /**
      * Name: loadAccounts
      * @param accounts (ArrayList<Account>)
-     * 
      * Inside the function:
      *   1. Loads every account into the Bank object.
-     *  
      */
+    public static void loadAccounts(ArrayList<Account> accounts){
+        for(Account account : accounts){
+            bank.addAccount(account);
+        }
+    }
+
+
 
      /**
      * Name: returnTransactions()
@@ -142,6 +187,22 @@ public class Main {
      *    3. Sorts the ArrayList.
      */
 
+     public static ArrayList<Transaction> returnTransactions() throws FileNotFoundException{
+         FileInputStream fis = new FileInputStream(TRANSACTIONS_FILE);
+         Scanner scan = new Scanner(fis);
+
+         ArrayList <Transaction> transactions = new ArrayList <Transaction>();
+         while(scan.nextLine() != null){
+             String[] values = scan.nextLine().split(",");
+             transactions.add(new Transaction(Transaction.Type.valueOf(values[1]), Long.parseLong(values[0]),
+             values[2], Double.parseDouble(values[3])));
+         }
+         scan.close ();
+         Collections.sort(transactions);
+         return transactions;
+
+     }
+
       /**
      * Name: runTransactions
      * @param transactions ArrayList<Transaction>
@@ -149,6 +210,12 @@ public class Main {
      * Inside the function:
      *  1. Executes every transaction using bank.execute.
      */
+     public static void runTransactions(ArrayList<Transaction> transactions){
+         for(Transaction transaction : transactions){
+             bank.executeTransaction(transaction);
+         }
+     }
+
 
      
     /**
@@ -162,5 +229,14 @@ public class Main {
      *   3. Print: \n\t\t\t\t\tAFTER TAX\n
      *   4. Print: "\t" + account that corresponds to id +"\n\n\n\n"
      */
+
+     public static void transactionHistory(String id){
+         System.out.println();
+         for (Transaction transaction: bank.getTransactions(id) ) {
+             wait(300);
+             System.out.println("\t"+transaction+ "\n");
+             System.out.println("\t" + bank.getAccount(id) +"\n\n\n\n");
+         }
+     }
 
 }
