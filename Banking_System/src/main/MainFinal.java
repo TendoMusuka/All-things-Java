@@ -139,7 +139,7 @@ public class MainFinal {
          Scanner scan = new Scanner(fis);
 
          ArrayList <Transaction> transactions = new ArrayList <Transaction>();
-         while(scan.nextLine() != null){
+         while(scan.hasNextLine()){
              String[] values = scan.nextLine().split(",");
              transactions.add(new Transaction(Transaction.Type.valueOf(values[1]), Long.parseLong(values[0]),
              values[2], Double.parseDouble(values[3])));
